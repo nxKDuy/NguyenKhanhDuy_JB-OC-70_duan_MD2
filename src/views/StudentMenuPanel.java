@@ -67,8 +67,8 @@ public class StudentMenuPanel {
         if (courses.isEmpty()) {
             System.out.println("Ban chua dang ky khoa hoc nao!");
         } else {
-            System.out.println("\nID | Ten khoa hoc | Thoi luong | Trang thai");
-            System.out.println("----|-------------|-----------|----------");
+            System.out.println("\nID Don | Ten khoa hoc | Thoi luong | Trang thai");
+            System.out.println("-------|-------------|-----------|----------");
             
             for (Map<String, Object> c : courses) {
                 String status = c.get("status").toString().equals("WAITING") ? "Cho duyet" :
@@ -76,12 +76,13 @@ public class StudentMenuPanel {
                 String name = c.get("name").toString();
                 if (name.length() > 15) name = name.substring(0, 15);
                 
-                System.out.printf("%2d | %-15s | %9d | %s\n",
-                    c.get("id"),
+                System.out.printf("%6d | %-15s | %9d | %s\n",
+                    c.get("enrollment_id"),
                     name,
                     c.get("duration"),
                     status);
             }
+            System.out.println("\nGhi chu: 'ID Don' la ID cua don dang ky (dung cho huy dang ky)");
         }
     }
     
