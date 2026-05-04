@@ -71,10 +71,9 @@ public class AdminStatisticMenu {
         System.out.println("\n========= SO HOC VIEN THEO TUNG KHOA HOC =========");
         
         String sql = "SELECT c.id, c.name, " +
-                     "COUNT(DISTINCT e.student_id) as total, " +
-                     "COUNT(DISTINCT CASE WHEN e.status = 'CONFIRM' THEN e.student_id END) as confirmed " +
+                     "COUNT(DISTINCT CASE WHEN e.status = 'CONFIRM' THEN e.student_id END) as total " +
                      "FROM course c " +
-                     "LEFT JOIN enrollment e ON c.id = e.course_id " +
+                     "LEFT JOIN enrollment e ON c.id = e.course_id AND e.status = 'CONFIRM' " +
                      "GROUP BY c.id, c.name " +
                      "ORDER BY c.id";
         
@@ -82,18 +81,17 @@ public class AdminStatisticMenu {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             
-            System.out.println("\nID | Ten khoa hoc | Tong | Xac nhan");
-            System.out.println("----|-------------|------|----------");
+            System.out.println("\nID | Ten khoa hoc | So HV (Confirm)");
+            System.out.println("----|-------------|----------------");
             
             while (rs.next()) {
                 String name = rs.getString("name");
                 if (name.length() > 15) name = name.substring(0, 15);
                 
-                System.out.printf("%2d | %-15s | %4d | %8d\n",
+                System.out.printf("%2d | %-15s | %6d\n",
                     rs.getInt("id"),
                     name,
-                    rs.getInt("total"),
-                    rs.getInt("confirmed"));
+                    rs.getInt("total"));
             }
         } catch (SQLException e) {
             System.out.println("Loi: " + e.getMessage());
@@ -137,7 +135,7 @@ public class AdminStatisticMenu {
     }
     
     private void statCoursesOver10Students() {
-        System.out.println("\n========= KHOA HOC CO TREN 10 HOC VIEN =========");
+        System.out.println("\n========= KHOA HOC CO TREN 10 HOC VIEN (CONFIRM) =========");
         
         String sql = "SELECT c.id, c.name, c.instructor, " +
                      "COUNT(DISTINCT e.student_id) as student_count " +
