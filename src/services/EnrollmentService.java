@@ -68,7 +68,7 @@ public class EnrollmentService {
                 enrollments.add(enrollment);
             }
         } catch (SQLException e) {
-            System.out.println("✗ Lỗi: " + e.getMessage());
+            System.out.println("Lỗi: " + e.getMessage());
         }
         return enrollments;
     }
@@ -102,7 +102,7 @@ public class EnrollmentService {
                 courses.add(course);
             }
         } catch (SQLException e) {
-            System.out.println("✗ Lỗi: " + e.getMessage());
+            System.out.println("Lỗi: " + e.getMessage());
         }
         return courses;
     }
@@ -113,11 +113,11 @@ public class EnrollmentService {
     public static boolean registerCourse(int studentId, int courseId) {
         // Kiểm tra student và course tồn tại
         if (!StudentService.existsStudent(studentId)) {
-            System.out.println("✗ Học viên không tồn tại!");
+            System.out.println("Học viên không tồn tại!");
             return false;
         }
         if (!CourseService.existsCourse(courseId)) {
-            System.out.println("✗ Khóa học không tồn tại!");
+            System.out.println("Khóa học không tồn tại!");
             return false;
         }
         
@@ -131,11 +131,11 @@ public class EnrollmentService {
             ResultSet rs = pstmt.executeQuery();
             
             if (rs.next()) {
-                System.out.println("✗ Bạn đã đăng ký khóa học này rồi!");
+                System.out.println("Bạn đã đăng ký khóa học này rồi!");
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println("✗ Lỗi: " + e.getMessage());
+            System.out.println("Lỗi: " + e.getMessage());
             return false;
         }
         
@@ -149,11 +149,11 @@ public class EnrollmentService {
             
             int rowsInserted = pstmt.executeUpdate();
             if (rowsInserted > 0) {
-                System.out.println("✓ Đăng ký khóa học thành công!");
+                System.out.println("Đăng ký khóa học thành công!");
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("✗ Lỗi khi đăng ký: " + e.getMessage());
+            System.out.println("Lỗi khi đăng ký: " + e.getMessage());
         }
         return false;
     }
@@ -171,13 +171,13 @@ public class EnrollmentService {
             int rowsUpdated = pstmt.executeUpdate();
             
             if (rowsUpdated > 0) {
-                System.out.println("✓ Duyệt đơn thành công!");
+                System.out.println("Duyệt đơn thành công!");
                 return true;
             } else {
-                System.out.println("✗ Không tìm thấy đơn hoặc đơn không ở trạng thái chờ duyệt!");
+                System.out.println("Không tìm thấy đơn hoặc đơn không ở trạng thái chờ duyệt!");
             }
         } catch (SQLException e) {
-            System.out.println("✗ Lỗi: " + e.getMessage());
+            System.out.println("Lỗi: " + e.getMessage());
         }
         return false;
     }
@@ -195,13 +195,13 @@ public class EnrollmentService {
             int rowsUpdated = pstmt.executeUpdate();
             
             if (rowsUpdated > 0) {
-                System.out.println("✓ Từ chối đơn thành công!");
+                System.out.println("Từ chối đơn thành công!");
                 return true;
             } else {
-                System.out.println("✗ Không tìm thấy đơn hoặc đơn không ở trạng thái chờ duyệt!");
+                System.out.println("Không tìm thấy đơn hoặc đơn không ở trạng thái chờ duyệt!");
             }
         } catch (SQLException e) {
-            System.out.println("✗ Lỗi: " + e.getMessage());
+            System.out.println("Lỗi: " + e.getMessage());
         }
         return false;
     }
@@ -219,13 +219,13 @@ public class EnrollmentService {
             int rowsUpdated = pstmt.executeUpdate();
             
             if (rowsUpdated > 0) {
-                System.out.println("✓ Hủy đơn thành công!");
+                System.out.println("Hủy đơn thành công!");
                 return true;
             } else {
-                System.out.println("✗ Không tìm thấy đơn hoặc đơn không ở trạng thái chờ duyệt!");
+                System.out.println("Không tìm thấy đơn hoặc đơn không ở trạng thái chờ duyệt!");
             }
         } catch (SQLException e) {
-            System.out.println("✗ Lỗi: " + e.getMessage());
+            System.out.println("Lỗi: " + e.getMessage());
         }
         return false;
     }
@@ -243,13 +243,13 @@ public class EnrollmentService {
             int rowsDeleted = pstmt.executeUpdate();
             
             if (rowsDeleted > 0) {
-                System.out.println("✓ Xóa học viên khỏi khóa học thành công!");
+                System.out.println("Xóa học viên khỏi khóa học thành công!");
                 return true;
             } else {
-                System.out.println("✗ Không tìm thấy đơn đăng ký!");
+                System.out.println("Không tìm thấy đơn đăng ký!");
             }
         } catch (SQLException e) {
-            System.out.println("✗ Lỗi: " + e.getMessage());
+            System.out.println("Lỗi: " + e.getMessage());
         }
         return false;
     }

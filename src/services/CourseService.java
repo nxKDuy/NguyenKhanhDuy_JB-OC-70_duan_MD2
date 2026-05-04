@@ -29,7 +29,7 @@ public class CourseService {
                 courses.add(course);
             }
         } catch (SQLException e) {
-            System.out.println("✗ Lỗi khi lấy danh sách khóa học: " + e.getMessage());
+            System.out.println("Lỗi khi lấy danh sách khóa học: " + e.getMessage());
         }
         return courses;
     }
@@ -56,7 +56,7 @@ public class CourseService {
                 course.put("create_at", rs.getDate("create_at"));
             }
         } catch (SQLException e) {
-            System.out.println("✗ Lỗi khi lấy khóa học: " + e.getMessage());
+            System.out.println("Lỗi khi lấy khóa học: " + e.getMessage());
         }
         return course;
     }
@@ -81,11 +81,11 @@ public class CourseService {
             
             int rowsInserted = pstmt.executeUpdate();
             if (rowsInserted > 0) {
-                System.out.println("✓ Thêm khóa học thành công!");
+                System.out.println("Thêm khóa học thành công!");
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("✗ Lỗi khi thêm khóa học: " + e.getMessage());
+            System.out.println("Lỗi khi thêm khóa học: " + e.getMessage());
         }
         return false;
     }
@@ -95,7 +95,7 @@ public class CourseService {
      */
     public static boolean updateCourse(int courseId, String name, int duration, String instructor) {
         if (name == null || name.trim().isEmpty() || duration <= 0 || instructor == null || instructor.trim().isEmpty()) {
-            System.out.println("✗ Vui lòng nhập đủ thông tin!");
+            System.out.println("Vui lòng nhập đủ thông tin!");
             return false;
         }
         
@@ -111,13 +111,13 @@ public class CourseService {
             
             int rowsUpdated = pstmt.executeUpdate();
             if (rowsUpdated > 0) {
-                System.out.println("✓ Cập nhật khóa học thành công!");
+                System.out.println("Cập nhật khóa học thành công!");
                 return true;
             } else {
-                System.out.println("✗ Không tìm thấy khóa học để cập nhật!");
+                System.out.println("Không tìm thấy khóa học để cập nhật!");
             }
         } catch (SQLException e) {
-            System.out.println("✗ Lỗi khi cập nhật khóa học: " + e.getMessage());
+            System.out.println("Lỗi khi cập nhật khóa học: " + e.getMessage());
         }
         return false;
     }
@@ -135,10 +135,10 @@ public class CourseService {
             int rowsDeleted = pstmt.executeUpdate();
             
             if (rowsDeleted > 0) {
-                System.out.println("✓ Xóa khóa học thành công!");
+                System.out.println("Xóa khóa học thành công!");
                 return true;
             } else {
-                System.out.println("✗ Không tìm thấy khóa học để xóa!");
+                System.out.println("Không tìm thấy khóa học để xóa!");
             }
         } catch (SQLException e) {
             System.out.println("✗ Lỗi khi xóa khóa học: " + e.getMessage());

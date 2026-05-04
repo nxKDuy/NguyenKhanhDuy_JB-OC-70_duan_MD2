@@ -137,7 +137,9 @@ public class AdminStudentManagement {
         String name = student.get("name").toString();
         String dob = student.get("dob").toString();
         String email = student.get("email").toString();
-        int sex = ((Number) student.get("sex")).intValue();
+        // sex từ DB là String ("Nam"/"Nữ"), chuyển thành int (1=Nam, 0=Nữ)
+        String sexStr = student.get("sex").toString();
+        int sex = sexStr.equals("Nam") ? 1 : 0;
         String phone = student.get("phone") != null ? student.get("phone").toString() : "";
         
         switch (choice) {
